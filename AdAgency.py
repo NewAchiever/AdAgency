@@ -326,9 +326,11 @@ class Brand:
     @classmethod
     def enforce_dayparting_schedule(cls):
         if datetime.datetime.now().hour - cls.__get_hour() >= 1:
+            print("Enforcing hourly dayparting schedule check")
             cls.__set_hour(datetime.datetime.now().hour)
             for brand in cls.get_brands_list():
                 brand.get_budget_manager().enforce_dayparting()
+            print("Successfully completed hourly dayparting schedule check")
 
     
     """Class method to save all brands to the file"""
